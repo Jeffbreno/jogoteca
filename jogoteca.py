@@ -58,17 +58,17 @@ def autenticar():
         usuario = usuarios[request.form['usuario']]
         if request.form['senha'] == usuario.senha:
             session['usuario_logado'] = usuario.nickname
-            flash(usuario.nickname + ' logado com sucesso!')
+            flash(usuario.nickname + ' logado com sucesso!', 'success')
             proxima_pagina = request.form['proxima']
             return redirect(proxima_pagina)
     else:
-        flash('Usuário não logado.')
+        flash('Usuário não logado.', 'danger')
         return redirect(url_for('login'))
 
 @app.route('/logout')
 def logout():
     session['usuario_logado'] = None
-    flash('Logout efetuado com sucesso!')
+    flash('Logout efetuado com sucesso!', 'success')
     return redirect(url_for('index'))
 
 app.run(debug=True)
